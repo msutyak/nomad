@@ -6,9 +6,10 @@ var Text = require('Text');
 var View = require('View');
 var TextInput = require('TextInput');
 var TouchableHighlight = require('TouchableHighlight');
-var ActivityIndicatorIOS = require('ActivityIndicatorIOS');
+var ActivityIndicator = require('ActivityIndicator');
 var api = require('../Utils/api')
 var Dashboard = require('../Components/Dashboard');
+var LoginScreen = require('../Components/login/LoginScreen');
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -96,6 +97,12 @@ class Main extends React.Component{
     //fetch data from github
     //reroute to the next passing that github information
   }
+  testSubmit(){
+    this.props.navigator.push({
+      title: "Login Page",
+      component: LoginScreen,
+    });
+  }
   render(){
     var showErr = (
       this.state.error ? <Text> {this.state.error} </Text> : <View></View>
@@ -107,17 +114,27 @@ class Main extends React.Component{
           style={styles.searchInput}
           value={this.state.username}
           onChange={this.handleChange.bind(this)} />
+          {/**
           <TouchableHighlight
             style={styles.button}
             onPress={this.handleSubmit.bind(this)}
             underlayColor="white">
               <Text style={styles.buttonText}> Search </Text>
           </TouchableHighlight>
-          <ActivityIndicatorIOS
+          **/}
+
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this.testSubmit.bind(this)}
+            underlayColor="white">
+              <Text style={styles.buttonText}> Test </Text>
+          </TouchableHighlight>
+
+          <ActivityIndicator
             animating={this.state.isLoading}
             color="#111"
             size="large">
-          </ActivityIndicatorIOS>
+          </ActivityIndicator>
           {showErr}
       </View>
     )

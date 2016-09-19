@@ -8,6 +8,9 @@ var Image = require('Image');
 var TouchableHighlight = require('TouchableHighlight');
 
 var Profile = require('./Profile');
+var Repositories = require('./Repositories');
+var api = require('../Utils/api');
+var Notes = require('./Notes');
 
 var styles = StyleSheet.create({
   container: {
@@ -50,11 +53,32 @@ class Dashboard extends React.Component{
       passProps: {userInfo: this.props.userInfo}
     });
   }
-  goToRepos(){
-    console.log('Going to Repos');
+  goToRepos() {
+    api.getRepos(this.props.userInfo.login)
+      .then((res) => {
+        this.props.navigator.push({
+          title: "Repos",
+          component: Repositories,
+          passProps: {
+            userInfo: this.props.userInfo,
+            repos: res
+          }
+      });
+    });
   }
   goToNotes(){
-    console.log('Going to Notes');
+    api.getNotes(this.props.userInfo.login)
+      .then((jsonRes) => {
+        jsonRes = jsonRes || {};
+        this.props.navigator.push({
+          component: Notes,
+          title: 'Notes',
+          passProps: {
+            notes: jsonRes,
+            userInfo: this.props.userInfo
+          }
+        });
+      });
   }
   render(){
     return(
