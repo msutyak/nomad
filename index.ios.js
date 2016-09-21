@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 
 var Main = require('./App/Components/Main');
+var LoginScreen = require('./App/Components/login/LoginScreen')
 
 class nomad extends Component {
   render() {
@@ -24,7 +25,7 @@ class nomad extends Component {
         style={styles.container}
         initialRoute={{
           title: 'Nomad',
-          component: Main
+          component: LoginScreen
         }} />
     );
   }

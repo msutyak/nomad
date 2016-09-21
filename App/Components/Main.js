@@ -10,6 +10,7 @@ var ActivityIndicator = require('ActivityIndicator');
 var api = require('../Utils/api')
 var Dashboard = require('../Components/Dashboard');
 var LoginScreen = require('../Components/login/LoginScreen');
+var Test = require('../Components/Test')
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -100,7 +101,9 @@ class Main extends React.Component{
   testSubmit(){
     this.props.navigator.push({
       title: "Login Page",
-      component: LoginScreen,
+      component: Test,
+      passProps: {
+      }
     });
   }
   render(){
@@ -114,14 +117,14 @@ class Main extends React.Component{
           style={styles.searchInput}
           value={this.state.username}
           onChange={this.handleChange.bind(this)} />
-          {/**
+
           <TouchableHighlight
             style={styles.button}
             onPress={this.handleSubmit.bind(this)}
             underlayColor="white">
               <Text style={styles.buttonText}> Search </Text>
           </TouchableHighlight>
-          **/}
+
 
           <TouchableHighlight
             style={styles.button}

@@ -29,7 +29,7 @@ class LoginScreen extends React.Component {
       title: "Create Account",
       component: F8InfoView,
 //      passProps: {userInfo: this.props.userInfo}
-    });
+    })
   }
 
   render() {
